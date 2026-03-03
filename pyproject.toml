@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-pydantic-cli-minimal-example = "pydantic_cli_minimal_example:main"
+myapp = "pydantic_cli_minimal_example:main"
 
 [build-system]
 requires = ["uv_build>=0.10.2,<0.11.0"]
