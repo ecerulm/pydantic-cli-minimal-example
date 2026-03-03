@@ -18,7 +18,7 @@ class AppSettings(BaseSettings):
     # configurable log levels for different loggers
     log_level: LogLevel = LogLevel.INFO
     requests_log_level: LogLevel = LogLevel.WARNING
-    log_dir: Path = "./logs"
+    log_dir: Path = Path("./logs")
     log_file: str = "log"
 
     model_config = SettingsConfigDict(

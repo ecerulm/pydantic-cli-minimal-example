@@ -32,4 +32,10 @@ uv add pydantic pydantic-settings
 uv add --dev pytest mypy
 ```
 
+# Run mypy
+
+```
+uv add --dev types-requests
+uv run mypy .  # you need to use the mypy in this venv so that it can use types-requests
+```
 
