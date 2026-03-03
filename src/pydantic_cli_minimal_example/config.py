@@ -1,4 +1,5 @@
 from enum import Enum
+from pathlib import Path
 
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -17,6 +18,8 @@ class AppSettings(BaseSettings):
     # configurable log levels for different loggers
     log_level: LogLevel = LogLevel.INFO
     requests_log_level: LogLevel = LogLevel.WARNING
+    log_dir: Path = "./logs"
+    log_file: str = "log"
 
     model_config = SettingsConfigDict(
         env_file=".env",  # load settings / configuration parameters if it exists
