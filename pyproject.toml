@@ -26,3 +26,16 @@ dev = [
     "pytest>=9.0.2",
     "types-requests>=2.32.4.20260107",
 ]
+
+[tool.mypy]
+plugins = ['pydantic.mypy']
+
+[tool.black]
+line-length = 88
+target-version = ['py311'] # in principle you dont need this if pyproject.toml specifies the python versions
+
+[tool.isort]
+combine_as_imports = true # https://github.com/PyCQA/isort/issues/1305, you don't want the from xxx import yyy (ZZZ as BBB) to be splitted.
+include_trailing_comma = true
+split_on_trailing_comma = true
+line_length = 88

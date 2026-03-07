@@ -1,8 +1,7 @@
 from enum import Enum
 from pathlib import Path
 
-from pydantic import BaseModel
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, CliSubCommand, SettingsConfigDict
 
 
 # This enum provides validation
@@ -14,7 +13,18 @@ class LogLevel(str, Enum):
     CRITICAL = "CRITICAL"
 
 
+class CanoodleSettings(BaseSettings):
+    pass
+
+
+class DrizzleSettings(BaseSettings):
+    pass
+
+
 class AppSettings(BaseSettings):
+    canoodle: CliSubCommand[CanoodleSettings]
+    drizzle: CliSubCommand[DrizzleSettings]
+
     # configurable log levels for different loggers
     log_level: LogLevel = LogLevel.INFO
     requests_log_level: LogLevel = LogLevel.WARNING
