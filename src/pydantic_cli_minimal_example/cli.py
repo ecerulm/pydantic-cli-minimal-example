@@ -3,7 +3,7 @@ import logging
 import requests
 from pydantic_settings import get_subcommand
 
-from .config import CanoodleSettings, DrizzleSettings, get_settings
+from .config import CanoodleSettings, DrizzleSettings, settings
 from .logconfig import setup_handlers
 
 logger = logging.getLogger("myapp")
@@ -20,8 +20,6 @@ def drizzle(settings: DrizzleSettings) -> None:
 
 
 def main() -> None:
-    settings = get_settings()
-
     requests_log_level = settings.requests_log_level
     requests_numeric_level = getattr(logging, requests_log_level.upper(), logging.INFO)
     logging.getLogger("urllib3").setLevel(requests_numeric_level)

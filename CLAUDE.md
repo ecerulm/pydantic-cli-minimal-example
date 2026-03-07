@@ -20,6 +20,4 @@ The entry point is `pydantic_cli_minimal_example:main` (defined in `__init__.py`
 
 **Dispatch** (`cli.py`): After parsing, `get_subcommand(settings)` returns the active subcommand instance. Use `isinstance` checks to dispatch to the appropriate handler function.
 
-**Logging** (`logconfig.py`): `setup_handlers()` replaces all root logger handlers. Outputs to console (colorized text if TTY, JSONL otherwise), a daily-rotating `.txt` file, and a size-rotating `.jsonl` file. Call `setup_handlers()` after `get_settings()` so settings are available.
-
-**Settings singleton**: `get_settings()` caches the `AppSettings` instance. Since `AppSettings` parses `sys.argv` on construction, it must only be instantiated once.
+**Logging** (`logconfig.py`): `setup_handlers()` replaces all root logger handlers. Outputs to console (colorized text if TTY, JSONL otherwise), a daily-rotating `.txt` file, and a size-rotating `.jsonl` file. Call `setup_handlers()`.

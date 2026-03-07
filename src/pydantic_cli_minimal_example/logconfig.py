@@ -11,7 +11,7 @@ from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 from pathlib import Path
 from typing import override
 
-from .config import get_settings
+from .config import settings
 
 
 class TextLogFormatter(logging.Formatter):
@@ -119,7 +119,6 @@ def setup_console_handler() -> None:
 def setup_regular_log_file_handler() -> None:
     # Create logs directory if it doesn't exist
     # https://docs.python.org/3.13/library/os.html#os.makedirs
-    settings = get_settings()
     os.makedirs(settings.log_dir, exist_ok=True)
 
     # Create date-based rotating file handler (rotates daily at midnight, keep 5 backups)
@@ -143,7 +142,6 @@ def setup_regular_log_file_handler() -> None:
 def setup_jsonl_log_file_handler() -> None:
     # Create logs directory if it doesn't exist
     # https://docs.python.org/3.13/library/os.html#os.makedirs
-    settings = get_settings()
     os.makedirs(settings.log_dir, exist_ok=True)
 
     # Create date-based rotating file handler (rotates daily at midnight, keep 5 backups)
@@ -178,8 +176,6 @@ def setup_handlers() -> None:
     # Remove all existing handlers
     while root_logger.hasHandlers():
         root_logger.removeHandler(root_logger.handlers[0])
-
-    settings = get_settings()
 
     setup_console_handler()
 

@@ -1,3 +1,4 @@
+import os
 from enum import Enum
 from pathlib import Path
 
@@ -42,11 +43,13 @@ class AppSettings(BaseSettings):
     )
 
 
-_settings = None
-
-
-def get_settings() -> AppSettings:
-    global _settings
-    if not _settings:
-        _settings = AppSettings()
-    return _settings
+if os.environ.get("PYTEST_VERSION") is not None:
+    settings = AppSettings(
+        canoodle=CanoodleSettings(),
+        drizzle=DrizzleSettings(),
+        _env_file=None,
+        _cli_parse_args=False,
+        _cli_exit_on_error=False,
+    )
+else:
+    settings = AppSettings()
